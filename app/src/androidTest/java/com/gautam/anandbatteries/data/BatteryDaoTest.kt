@@ -241,7 +241,7 @@ class BatteryDaoTest {
 
         // Then
         assertNotNull(result)
-        assertEquals(150.0, result?.price, 0.01)
+        assertEquals(150.0, result!!.price, 0.01)
     }
 
     @Test
