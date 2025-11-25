@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.gautam.anandbatteries.data.CartItemWithBattery
 import com.gautam.anandbatteries.viewmodel.BatteryViewModel
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -126,7 +127,7 @@ fun CartScreen(
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Text(
-                            text = "₹${String.format("%.2f", cartTotal)}",
+                            text = "₹${String.format(Locale.getDefault(), "%.2f", cartTotal)}",
                             style = MaterialTheme.typography.bodyLarge
                         )
                     }
@@ -148,7 +149,7 @@ fun CartScreen(
                         )
                     }
 
-                    Divider(modifier = Modifier.padding(vertical = 12.dp))
+                    HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -160,7 +161,7 @@ fun CartScreen(
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = "₹${String.format("%.2f", cartTotal)}",
+                            text = "₹${String.format(Locale.getDefault(), "%.2f", cartTotal)}",
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary
@@ -256,7 +257,7 @@ fun CartItemCard(
                 // Quantity controls
                 Surface(
                     shape = RoundedCornerShape(8.dp),
-                    border = ButtonDefaults.outlinedButtonBorder,
+                    border = ButtonDefaults.outlinedButtonBorder(enabled = true),
                     color = MaterialTheme.colorScheme.surface
                 ) {
                     Row(
@@ -297,14 +298,14 @@ fun CartItemCard(
                     horizontalAlignment = Alignment.End
                 ) {
                     Text(
-                        text = "₹${String.format("%.2f", cartItem.battery.price * cartItem.quantity)}",
+                        text = "₹${String.format(Locale.getDefault(), "%.2f", cartItem.battery.price * cartItem.quantity)}",
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.primary
                     )
                     if (cartItem.quantity > 1) {
                         Text(
-                            text = "₹${String.format("%.2f", cartItem.battery.price)} each",
+                            text = "₹${String.format(Locale.getDefault(), "%.2f", cartItem.battery.price)} each",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -314,4 +315,3 @@ fun CartItemCard(
         }
     }
 }
-
